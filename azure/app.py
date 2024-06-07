@@ -42,9 +42,7 @@ def execute_query(query, params=None, commit=False):
     conn = None
     cursor = None
     try:
-        print(f"Executing query: {query} with params: {params}")  # Logging query
         conn = pyodbc.connect(conn_str)
-        print(f"Connected to database: {conn_str}")  # Logging connection
         cursor = conn.cursor()
         cursor.execute(query, params or ())
         print("Query executed successfully")  # Logging success
@@ -55,7 +53,6 @@ def execute_query(query, params=None, commit=False):
         if cursor.description:
             columns = [column[0] for column in cursor.description]
             result = [dict(zip(columns, row)) for row in cursor.fetchall()]
-            print(f"Query result: {result}")  # Logging result
             return result
         else:
             print("No data found")  # Logging no data
@@ -106,7 +103,7 @@ def register():
     except Exception as e:
         print(f"Error during registration: {e}")
         return jsonify({'message': 'Error during registration'}), 500
-
+    
 
 # Login a user
 @app.route('/login', methods=['POST'])
@@ -132,11 +129,11 @@ def login():
         return jsonify({'message': 'Error during login'}), 500
 
 # Logout a user
-@app.route('/logout')
+@app.route('/logout', methods=['GET', 'POST'])
 def logout():
-    session.pop('username', None)
-    session.pop('logged_in', None)
-    return redirect(url_for('login'))
+    print(f"Logging out user: {session.get('username')}")  # Logging the user being logged out
+    session.clear()  # Clear all session data
+    return redirect(url_for('login_page'))
 
 # Login required decorator
 def login_required(f):
@@ -151,7 +148,7 @@ def login_required(f):
 @app.route('/index')
 @login_required
 def index():
-    return render_template('index.html')
+    return render_template('index.html', user=session.get('username'))
 
 @app.route('/chat', methods=['POST'])
 def chat():
@@ -181,9 +178,6 @@ def chat():
                 ]
             }
         )
-
-        # Access the response data as attributes of the response object
-        print("Response Data:", response)  # Debugging line
 
         if len(response.choices) > 0:
             ai_message = response.choices[0].message.content.strip()
