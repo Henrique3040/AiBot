@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure OpenAI Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="header">
+        <img src="https://www.erasmushogeschool.be/themes/custom/ehb/logo.svg" alt="EhB Logo" class="EhB-logo">
+        <div class="logout-container">
+            <form action="{{ url_for('logout') }}" method="post">
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="title-container">
+        <h1>Welcome to the EhB AI Bot, {{ user }}!</h1>
+        <p>Ask me anything about Erasmushogeschool Brussel!</p>
+    </div>
+
+    <div class="chat-container" id="chat-container">
+        <div class="chat-window">
+            <div class="messages" id="messages"></div>
+        </div>
+        <div class="input-area">
+            <input type="text" id="userInput" placeholder="Type a message..." autofocus>
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='chat.js') }}"></script>
+</body>
+</html>

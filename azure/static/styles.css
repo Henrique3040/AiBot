@@ -1,0 +1,111 @@
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    color: #333333;
+    background-color: #f6f6f6;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.EhB-logo {
+    height: 50px;
+}
+
+.logout-container {
+    margin-right: 20px;
+}
+
+.logout-button {
+    padding: 10px 20px;
+    border: none;
+    background: #ff4c4c;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.logout-button:hover {
+    background: #e04444;
+}
+
+.title-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 80vh;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.chat-window {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-area {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.input-area input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.input-area button {
+    padding: 10px;
+    margin-left: 10px;
+    border: none;
+    background: #1bbcb6;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.input-area button:hover {
+    background: #0056b3;
+}
+
+.message {
+    margin-bottom: 10px;
+}
+
+.message.user {
+    text-align: right;
+}
+
+.message.ai {
+    text-align: left;
+}
