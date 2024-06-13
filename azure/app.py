@@ -157,7 +157,7 @@ def chat():
 
         # Generate the chat completion
         response = client.chat.completions.create(
-            model="ChatAIEhb",  # Replace with your specific deployment name if needed
+            model="ChatAIEhb", 
             messages=[
                 {"role": "system", "content": "You are a helpful assistant who answers questions based on the provided dataset."},
                 {"role": "user", "content": user_input}
